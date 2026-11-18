@@ -3,7 +3,7 @@
 
 const PAGE = "servicios";
 
-const WHATSAPP_NUMBER = "";
+const WHATSAPP_NUMBER = (window.RDOCE_CONFIG || {}).whatsapp || "";
 
 const EMAIL_TO =
     "ventas@rdocesa.cr";

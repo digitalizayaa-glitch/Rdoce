@@ -3,9 +3,9 @@
 
 const PAGE = "inicio";
 
-const WHATSAPP_NUMBER = "";
+const WHATSAPP_NUMBER = (window.RDOCE_CONFIG || {}).whatsapp || "";
 
-const EMAIL_TO = "ventas@rdocesa.cr";
+const EMAIL_TO = (window.RDOCE_CONFIG || {}).email || "ventas@rdocesa.cr";
 
 const EMAIL_SUBJECT =
     "Consulta desde el sitio web de R Doce";
