@@ -1,7 +1,7 @@
 "use strict";
 
 const PAGE = "servicios";
-const WHATSAPP_NUMBER = "";
+const WHATSAPP_NUMBER = "50624341225";
 const EMAIL_TO = "ventas@rdocesa.cr";
 
 const menuButton = document.querySelector(".menu-button");
