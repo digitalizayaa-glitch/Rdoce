@@ -78,7 +78,7 @@ document
 
 
 
-const WHATSAPP_NUMBER = "";
+const WHATSAPP_NUMBER = (window.RDOCE_CONFIG || {}).whatsapp || "";
 
 
 document

@@ -1,8 +1,8 @@
 "use strict";
 
 const PAGE = "servicios";
-const WHATSAPP_NUMBER = "";
-const EMAIL_TO = "ventas@rdocesa.cr";
+const WHATSAPP_NUMBER = (window.RDOCE_CONFIG || {}).whatsapp || "";
+const EMAIL_TO = (window.RDOCE_CONFIG || {}).email || "ventas@rdocesa.cr";
 
 const menuButton = document.querySelector(".menu-button");
 const mainNav = document.querySelector(".main-nav");
