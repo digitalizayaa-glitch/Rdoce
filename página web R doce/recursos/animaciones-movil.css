@@ -1,0 +1,126 @@
+/* =========================================================
+   ANIMACIONES PARA CELULAR Y TABLET (hasta 900px)
+   Se activan solo cuando animaciones-movil.js añade la
+   clase "anim-movil" al <html>. Sin JavaScript o con
+   "reducir movimiento" activado, el sitio se ve normal.
+   ========================================================= */
+
+@media (max-width: 900px) and (prefers-reduced-motion: no-preference) {
+
+    /* ---------- Aparición al hacer scroll ---------- */
+
+    .anim-movil .anim-reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+            opacity 0.6s ease,
+            transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--anim-delay, 0ms);
+        will-change: opacity, transform;
+    }
+
+    .anim-movil .anim-reveal.anim-zoom {
+        transform: scale(0.94);
+    }
+
+    .anim-movil .anim-reveal.anim-visible {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Línea roja decorativa: crece de izquierda a derecha */
+
+    .anim-movil .red-line.anim-reveal {
+        opacity: 1;
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+    }
+
+    .anim-movil .red-line.anim-reveal.anim-visible {
+        transform: scaleX(1);
+    }
+
+    /* ---------- Menú desplegable ---------- */
+
+    .anim-movil .main-nav.open {
+        animation: anim-menu-abrir 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+        box-shadow: 0 18px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .anim-movil .main-nav.open a {
+        animation: anim-menu-enlace 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .anim-movil .main-nav.open a:nth-child(1) { animation-delay: 0.05s; }
+    .anim-movil .main-nav.open a:nth-child(2) { animation-delay: 0.10s; }
+    .anim-movil .main-nav.open a:nth-child(3) { animation-delay: 0.15s; }
+    .anim-movil .main-nav.open a:nth-child(4) { animation-delay: 0.20s; }
+    .anim-movil .main-nav.open a:nth-child(5) { animation-delay: 0.25s; }
+    .anim-movil .main-nav.open a:nth-child(6) { animation-delay: 0.30s; }
+
+    .anim-movil .menu-button {
+        transition: transform 0.3s ease;
+    }
+
+    .anim-movil .menu-button[aria-expanded="true"] {
+        transform: rotate(90deg);
+    }
+
+    /* ---------- Encabezado con sombra al bajar ---------- */
+
+    .anim-movil .site-header {
+        transition: box-shadow 0.3s ease;
+    }
+
+    .anim-movil .site-header.anim-scrolled {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ---------- Respuesta al tocar ---------- */
+
+    .anim-movil :is(a, button, .service-card, .platform-link) {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .anim-movil :is(a, button, .service-card, .platform-link):not(.anim-reveal) {
+        transition-property: transform, background-color, color, border-color, opacity;
+        transition-duration: 0.15s;
+    }
+
+    .anim-movil :is(a, button, .service-card, .platform-link):active {
+        transform: scale(0.97);
+        transition-duration: 0.12s;
+        transition-delay: 0s;
+    }
+
+    /* Flecha de las tarjetas: pequeño empujón al tocar */
+
+    .anim-movil .service-card:active .service-arrow,
+    .anim-movil .platform-link:active .arrow {
+        transform: translateX(4px);
+        transition: transform 0.15s ease;
+    }
+}
+
+@keyframes anim-menu-abrir {
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes anim-menu-enlace {
+    from {
+        opacity: 0;
+        transform: translateX(-14px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
