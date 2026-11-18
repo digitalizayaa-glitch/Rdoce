@@ -36,8 +36,33 @@ window.RDOCE_CONFIG = {
        se muestra desactivado. */
     linkedin: "",
     facebook: "",
-    instagram: ""
+    instagram: "",
+
+    /* ANIMACIONES
+       Estilo de las animaciones de entrada, al bajar y contadores:
+         "precision" → sobrio: aparece suave hacia arriba
+         "taller"    → industrial: bloques que se cortan hacia adentro
+                       y contadores tipo odómetro
+         "enfoque"   → tecnológico: de borroso a nítido, escaneo rojo
+                       en las fotos y contadores tipo lectura digital
+         ""          → sin animaciones */
+    animaciones: "precision",
+
+    /* Muestra abajo a la izquierda una barra para probar los 3
+       estilos. Ponelo en false cuando ya hayas elegido. */
+    selectorAnimaciones: true
 };
+
+
+/* Carga animaciones.js (está en la misma carpeta que este archivo) */
+(function () {
+    const yo = document.currentScript && document.currentScript.src;
+    if (!yo) return;
+    const s = document.createElement("script");
+    s.src = yo.replace(/config\.js(\?.*)?$/, "animaciones.js");
+    s.defer = true;
+    document.head.appendChild(s);
+})();
 
 
 /* ----------------------------------------------------------
