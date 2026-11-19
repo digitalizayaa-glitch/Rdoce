@@ -38,7 +38,12 @@
     /* ---------- Estilo activo ----------
        Con el selector de prueba encendido, la elección del
        visitante (guardada en su navegador) manda sobre config. */
+    /* En la página de comparación cada vista pide su estilo con
+       #anim-precision, #anim-taller, #anim-enfoque o #anim-ninguna */
+    const pedido = (location.hash.match(/^#anim-([a-z]+)$/) || [])[1];
+
     function estiloActivo() {
+        if (pedido) return ESTILOS.includes(pedido) ? pedido : "";
         if (cfg.selectorAnimaciones) {
             try {
                 const guardado = localStorage.getItem("rdoce-anim");
@@ -457,7 +462,7 @@
         style.textContent = CSS;
         document.head.appendChild(style);
 
-        if (cfg.selectorAnimaciones) crearSelector();
+        if (cfg.selectorAnimaciones && !pedido) crearSelector();
 
         if (!estilo || sinMovimiento || !("IntersectionObserver" in window)) return;
 
