@@ -39,18 +39,10 @@ window.RDOCE_CONFIG = {
     instagram: "",
 
     /* ANIMACIONES
-       Estilo de las animaciones de entrada, al bajar y contadores:
-         "precision" → sobrio: aparece suave hacia arriba
-         "taller"    → industrial: bloques que se cortan hacia adentro
-                       y contadores tipo odómetro
-         "enfoque"   → tecnológico: de borroso a nítido, escaneo rojo
-                       en las fotos y contadores tipo lectura digital
-         ""          → sin animaciones */
-    animaciones: "precision",
-
-    /* Muestra abajo a la izquierda una barra para probar los 3
-       estilos. Ponelo en false cuando ya hayas elegido. */
-    selectorAnimaciones: true
+       "taller" → bloques que se descubren como un corte y contadores
+                  tipo odómetro (intensidad media, ajustada al celular)
+       ""       → sin animaciones */
+    animaciones: "taller"
 };
 
 
