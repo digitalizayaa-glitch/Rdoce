@@ -1,0 +1,344 @@
+/* ==========================================================
+   LEGIBILIDAD Y ACCESIBILIDAD — R DOCE
+   ----------------------------------------------------------
+   El sitio lo usan sobre todo personas adultas desde el
+   celular. Este archivo se carga en todas las páginas DESPUÉS
+   del CSS propio de cada una y corrige, en un solo lugar:
+
+     - Tamaños de letra mínimos (nada ilegible).
+     - Botones y enlaces con área táctil de 48 px o más.
+     - Contraste suficiente en etiquetas y textos claros.
+
+   Usa !important a propósito: cada página tiene su propio CSS
+   con selectores distintos, y estas reglas deben ganar siempre.
+   ========================================================== */
+
+:root {
+    --rd-rojo-texto: #b3121a;        /* rojo legible sobre fondo claro */
+    --rd-rojo-texto-oscuro: #ff7479; /* rojo legible sobre fondo oscuro */
+    --rd-gris-texto: #4a4a4a;        /* gris legible sobre fondo claro */
+}
+
+/* Secciones con fondo oscuro (para elegir el color correcto) */
+/* .vacuum-feature, .vacuum-callout, .vacuum-hero, .company-focus,
+   .contact-strip, .site-footer */
+
+
+/* ==========================================================
+   1. TODAS LAS PANTALLAS — mínimos razonables
+   ========================================================== */
+
+/* Etiquetas pequeñas en mayúsculas (antes de 7 a 11 px) */
+.eyebrow,
+.section-label,
+.hero-badge,
+.star-label,
+.machine-featured,
+.service-top small,
+.thermal-top small,
+.equipment-title small,
+.thermal-link span,
+.vacuum-facts span,
+.platform-link span {
+    font-size: 12px !important;
+    letter-spacing: .08em !important;
+}
+
+/* Etiquetas en rojo: rojo más oscuro para que se lean.
+   (Las insignias "SERVICIO DESTACADO" tienen fondo rojo y texto
+   blanco, así que no se tocan.) */
+.eyebrow,
+.section-label {
+    color: var(--rd-rojo-texto) !important;
+}
+.vacuum-feature .eyebrow,
+.vacuum-callout .eyebrow,
+.vacuum-hero .eyebrow,
+.company-focus .section-label,
+.section-label.light {
+    color: var(--rd-rojo-texto-oscuro) !important;
+}
+/* La franja de contacto es oscura en unas páginas y roja en otras:
+   en las dos, la etiqueta en blanco se lee bien */
+.contact-strip .section-label {
+    color: #ffffff !important;
+}
+
+/* Números de orden (01, 02…) en gris claro: más oscuros para leerse */
+.service-number,
+.service-top span,
+.thermal-top span {
+    color: #707070 !important;
+}
+
+/* Lema junto al logo ("PRECISIÓN Y SERVICIO", antes 7 px) */
+.brand small,
+.brand-name span,
+.footer-brand-line span {
+    font-size: 11px !important;
+}
+
+/* Números de tarjeta y nombres de clientes (antes 10–12 px) */
+.service-number,
+.service-top span,
+.thermal-top span,
+.equipment-title span,
+.contact-cards article > span,
+.detail-grid article > span,
+.feature > span,
+.values-grid article > span,
+.capabilities-grid article > span,
+.clients-grid .client span {
+    font-size: 14px !important;
+}
+
+/* Migas de pan: "Inicio / Servicios / …" */
+.breadcrumb,
+.breadcrumb a,
+.breadcrumb span {
+    font-size: 14px !important;
+    color: var(--rd-gris-texto) !important;
+}
+.vacuum-hero .breadcrumb,
+.vacuum-hero .breadcrumb a,
+.vacuum-hero .breadcrumb span {
+    color: #d4d4d4 !important;
+}
+
+/* Botones y enlaces de acción (antes 9–10 px) */
+.primary-button,
+.secondary-button,
+.contact-action,
+.footer-action,
+.text-link,
+.star-button,
+.vacuum-button,
+.center-action a,
+.equipment-copy a,
+.machine-grid article > a,
+.vacuum-callout a,
+.service-body strong {
+    font-size: 13px !important;
+    letter-spacing: .04em !important;
+}
+
+/* Textos de párrafo: nunca menos de 15 px */
+main p,
+main li {
+    font-size: max(15px, 1em) !important;
+}
+
+/* Pie de página */
+.site-footer h2 { font-size: 13px !important; }
+.footer-links a,
+.footer-contact-link { font-size: 15px !important; }
+.footer-bottom,
+.footer-bottom span { font-size: 13px !important; }
+
+/* Textos provisorios de fotos ("FOTO REAL…") */
+.image-slot,
+.image-placeholder,
+.service-thumb,
+.service-media {
+    font-size: 12px !important;
+}
+
+/* Foco visible al navegar con teclado */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--rd-rojo-texto) !important;
+    outline-offset: 3px !important;
+}
+
+
+/* ==========================================================
+   2. CELULAR — letra grande y botones fáciles de tocar
+   ========================================================== */
+@media (max-width: 768px) {
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    /* --- Texto de lectura --- */
+    main p,
+    main li {
+        font-size: 17px !important;
+        line-height: 1.65 !important;
+    }
+
+    /* Textos dentro de tarjetas */
+    main article p,
+    .service-card p,
+    .service-body p,
+    .contact-cards p,
+    .contact-cards a,
+    .mini-facts span,
+    .mini-facts strong {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+    }
+
+    .platform-link strong,
+    .vacuum-facts strong {
+        font-size: 17px !important;
+    }
+
+    /* --- Etiquetas --- */
+    .eyebrow,
+    .section-label,
+    .hero-badge,
+    .star-label,
+    .machine-featured,
+    .service-top small,
+    .thermal-top small,
+    .equipment-title small,
+    .thermal-link span,
+    .vacuum-facts span,
+    .platform-link span {
+        font-size: 13px !important;
+    }
+
+    .brand small,
+    .brand-name span,
+    .footer-brand-line span {
+        font-size: 11px !important;
+        letter-spacing: .1em !important;
+    }
+
+    .service-number,
+    .service-top span,
+    .thermal-top span,
+    .equipment-title span,
+    .contact-cards article > span,
+    .detail-grid article > span,
+    .feature > span,
+    .values-grid article > span,
+    .capabilities-grid article > span,
+    .clients-grid .client span {
+        font-size: 15px !important;
+    }
+
+    /* --- Botón del menú: 48 × 48 px --- */
+    .menu-button {
+        min-width: 48px !important;
+        min-height: 48px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 30px !important;
+    }
+
+    /* Enlaces del menú desplegado */
+    .main-nav a {
+        font-size: 18px !important;
+        min-height: 56px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    /* --- Migas de pan: fáciles de tocar --- */
+    .breadcrumb,
+    .breadcrumb a,
+    .breadcrumb span {
+        font-size: 15px !important;
+    }
+    .breadcrumb {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        column-gap: 6px !important;
+    }
+    .breadcrumb a {
+        display: inline-flex !important;
+        align-items: center !important;
+        min-height: 48px !important;
+        min-width: 48px !important;
+        justify-content: center !important;
+        padding-inline: 4px !important;
+    }
+
+    /* Correo y teléfono en las tarjetas de Contacto */
+    .contact-cards a {
+        display: inline-flex !important;
+        align-items: center !important;
+        min-height: 48px !important;
+    }
+
+    /* --- Botones de acción: grandes, a lo ancho --- */
+    .primary-button,
+    .secondary-button,
+    .contact-action,
+    .footer-action,
+    .star-button,
+    .vacuum-button,
+    .center-action a,
+    .equipment-copy a,
+    .machine-grid article > a,
+    .vacuum-callout a {
+        font-size: 16px !important;
+        min-height: 52px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 12px 20px !important;
+        line-height: 1.25 !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Enlaces de texto tipo "CONOCER LA EMPRESA →" */
+    .text-link,
+    .service-body strong {
+        font-size: 16px !important;
+        min-height: 48px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+    }
+
+    /* Grupos de botones de contacto: uno debajo del otro */
+    .contact-actions,
+    .footer-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+    .contact-actions > *,
+    .footer-actions > * {
+        width: 100% !important;
+    }
+
+    /* --- Pie de página --- */
+    .site-footer h2 {
+        font-size: 14px !important;
+    }
+    .site-footer p {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+    }
+    .footer-links a,
+    .footer-contact-link {
+        font-size: 17px !important;
+        display: flex !important;
+        align-items: center !important;
+        min-height: 48px !important;
+        width: 100% !important;
+    }
+    .footer-bottom,
+    .footer-bottom span {
+        font-size: 14px !important;
+    }
+
+    /* Espacio al final para que los botones flotantes no tapen
+       el pie de página */
+    .footer-bottom {
+        padding-bottom: 90px !important;
+    }
+
+    /* --- Fotos provisorias --- */
+    .image-slot,
+    .image-placeholder,
+    .service-thumb,
+    .service-media {
+        font-size: 13px !important;
+    }
+}

@@ -174,11 +174,18 @@ document.addEventListener("DOMContentLoaded", () => {
         0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55); }
         100% { box-shadow: 0 0 0 18px rgba(37,211,102,0); }
     }
-    @media (max-width: 600px) {
-        .rd-float { right: calc(14px + env(safe-area-inset-right, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); gap: 10px; }
-        .rd-float-btn { height: 50px; min-width: 50px; }
-        .rd-float-icon { flex-basis: 50px; height: 50px; }
-        .rd-float-btn:hover .rd-float-label { max-width: 0; opacity: 0; padding-left: 0; }
+    /* Celular: los botones muestran siempre su nombre, para que
+       nadie tenga que adivinar qué hace cada ícono */
+    .rd-float-corto { display: none; }
+    @media (max-width: 768px) {
+        /* Los dos botones en una fila, para tapar menos contenido */
+        .rd-float { right: calc(12px + env(safe-area-inset-right, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); flex-direction: row; gap: 8px; }
+        .rd-float-btn { height: 52px; }
+        .rd-float-icon { flex-basis: 48px; height: 52px; }
+        .rd-float-btn .rd-float-label,
+        .rd-float-btn:hover .rd-float-label { max-width: none; opacity: 1; padding-left: 18px; font-size: 16px; }
+        .rd-float-largo { display: none; }
+        .rd-float-corto { display: inline; }
     }
     @media (prefers-reduced-motion: reduce) {
         .rd-float-btn { animation: none; opacity: 1; transform: none; }
@@ -236,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "mailto:" + (cfg.email || "") +
             "?subject=" + encodeURIComponent("Consulta para R Doce" + (pagina ? " – " + pagina : ""));
         email.innerHTML =
-            '<span class="rd-float-label">' + (cfg.email || "Correo") + "</span>" +
+            '<span class="rd-float-label"><span class="rd-float-largo">' + (cfg.email || "Correo") + '</span><span class="rd-float-corto">Correo</span></span>' +
             '<span class="rd-float-icon">' + ICON_EMAIL + "</span>";
 
         /* WhatsApp */
@@ -244,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
         wa.className = "rd-float-btn rd-wa";
         wa.setAttribute("aria-label", "Escribir por WhatsApp a R Doce");
         wa.innerHTML =
-            '<span class="rd-float-label">Escríbanos por WhatsApp</span>' +
+            '<span class="rd-float-label"><span class="rd-float-largo">Escríbanos por WhatsApp</span><span class="rd-float-corto">WhatsApp</span></span>' +
             '<span class="rd-float-icon">' + ICON_WA + "</span>";
 
         const numero = String(cfg.whatsapp || "").replace(/\D/g, "");
