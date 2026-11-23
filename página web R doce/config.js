@@ -18,13 +18,23 @@ window.RDOCE_CONFIG = {
     email: "ventas@rdocesa.cr",
 
     /* UBICACIÓN
-       Recomendado: en Google Maps buscá la empresa → "Compartir" →
-       "Copiar vínculo" y pegalo en googleMaps.
-       En Waze: buscá el lugar → "Compartir" → copiá el enlace.
-       Mientras tanto se usa una búsqueda por la dirección. */
-    googleMaps:
-        "https://www.google.com/maps/search/?api=1&query=" +
-        encodeURIComponent("R Doce, San Antonio, Alajuela, Costa Rica"),
+       Coordenadas del local (sacadas del enlace de Waze). Las usa el
+       mapa de la página de Contacto y los botones "Cómo llegar". */
+    ubicacion: {
+        lat: 9.996336,
+        lng: -84.241598,
+        zoom: 16
+    },
+
+    /* MAPA INSERTADO (opcional)
+       Si R Doce tiene su ficha en Google Maps: buscá la empresa →
+       "Compartir" → "Insertar un mapa" → copiá solo la dirección que
+       está dentro de src="…" y pegala acá. Así el mapa muestra el
+       nombre de la empresa y sus reseñas. Si queda vacío, el mapa
+       usa las coordenadas de arriba. */
+    mapaInsertado: "",
+
+    googleMaps: "https://www.google.com/maps/search/?api=1&query=9.996336,-84.241598",
 
     waze: "https://waze.com/ul/hd1u0g5c0u",
 
@@ -43,13 +53,17 @@ window.RDOCE_CONFIG = {
 };
 
 
-/* Carga animaciones.js e interacciones.js (en la misma carpeta que este archivo) */
+/* Carga animaciones.js, interacciones.js y, si la página tiene mapa,
+   mapa.js (en la misma carpeta que este archivo) */
 (function () {
     const yo = document.currentScript && document.currentScript.src;
     if (!yo) return;
-    ["animaciones.js", "interacciones.js"].forEach(nombre => {
+    const scripts = ["animaciones.js", "interacciones.js"];
+    if (document.querySelector("[data-mapa]")) scripts.push("mapa.js");
+    scripts.forEach(nombre => {
         const s = document.createElement("script");
-        s.src = yo.replace(/config\.js(\?.*)?$/, nombre);
+        /* Mantiene la misma versión (?v=…) que config.js */
+        s.src = yo.replace(/config\.js(\?.*)?$/, nombre + "$1");
         s.defer = true;
         document.head.appendChild(s);
     });

@@ -31,11 +31,11 @@
 
     <link
         rel="stylesheet"
-        href="Contacto.css"
+        href="Contacto.css?v=20261123"
     >
-<link rel="stylesheet" href="../movil.css">
-<link rel="preload" href="../animaciones.js" as="script">
-<link rel="preload" href="../interacciones.js" as="script">
+<link rel="stylesheet" href="../movil.css?v=20261123">
+<link rel="preload" href="../animaciones.js?v=20261123" as="script">
+<link rel="preload" href="../interacciones.js?v=20261123" as="script">
 <script>(function(d){if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)return;d.classList.add("rd-cargando");setTimeout(function(){d.classList.remove("rd-cargando")},1500)})(document.documentElement)</script>
 
 
@@ -312,13 +312,58 @@
 
 
 
-        <div class="map-box">
+            <div class="map-box mapa" data-mapa>
 
-            <div class="image-placeholder">
-                MAPA DE GOOGLE
+                <div class="mapa-marco">
+
+                    <p class="mapa-aviso" role="status">
+                        Cargando mapa…
+                    </p>
+
+                    <button type="button" class="mapa-activar" hidden>
+                        Tocar para mover el mapa
+                    </button>
+
+                </div>
+
+                <div class="mapa-info">
+
+                    <span class="section-label">
+                        UBICACIÓN
+                    </span>
+
+                    <p class="mapa-direccion">
+                        San Antonio de Alajuela, 200 metros sur del INA,
+                        frente al Complejo Deportivo Wilmer López.
+                    </p>
+
+                    <div class="mapa-acciones">
+
+                        <a
+                            class="mapa-btn mapa-btn-principal"
+                            data-mapa-ir
+                            href="https://www.google.com/maps/dir/?api=1&amp;destination=9.996336,-84.241598"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Cómo llegar
+                        </a>
+
+                        <a
+                            class="mapa-btn"
+                            data-link="waze"
+                            href="https://waze.com/ul/hd1u0g5c0u"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Abrir en Waze
+                        </a>
+
+                    </div>
+
+                </div>
+
             </div>
-
-        </div>
 
 
     </div>
@@ -578,8 +623,8 @@
 </footer>
 
 
-<script src="../config.js"></script>
-<script src="Contacto.js"></script>
+<script src="../config.js?v=20261123"></script>
+<script src="Contacto.js?v=20261123"></script>
 
 
 </body>

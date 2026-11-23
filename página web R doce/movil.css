@@ -348,12 +348,55 @@ button:focus-visible {
     .brand-logo { height: 64px !important; }
 }
 
+/* Escritorio: el encabezado mide lo mismo en todas las páginas
+   (antes 112 px en unas y 124 px en otras) */
+@media (min-width: 901px) {
+    .header-container {
+        min-height: 112px !important;
+    }
+}
+
 /* ==========================================================
-   3. ENCABEZADO EN CELULAR — logo 25 % más grande
+   3. ENCABEZADO CON MENÚ ☰ (celular, celular acostado y tablet)
    El encabezado crece con el logo y el nombre queda centrado
-   a la altura media del logo. Todas las páginas quedan iguales.
+   a la altura media del logo. Todas las páginas quedan iguales:
+   cada página tiene su propio CSS con valores distintos, así que
+   acá se fijan todos de forma explícita.
    ========================================================== */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+
+    /* Botón ☰ con estilo propio: sin esto, Safari del iPhone le pone
+       su estilo de botón (color azul, otro tamaño) en las páginas
+       cuyo CSS no le da color */
+    .menu-button {
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        background: transparent !important;
+        border: 0 !important;
+        padding: 0 !important;
+        color: #111111 !important;
+        font-family: inherit !important;
+        font-size: 30px !important;
+        line-height: 1 !important;
+        min-width: 48px !important;
+        min-height: 48px !important;
+        /* Todas las páginas pasan al menú ☰ en 900 px (antes unas en
+           860 y otras en 900, y se veían distintas entre sí) */
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .brand-text,
+    .brand-name {
+        white-space: nowrap !important;
+    }
+
+    .brand-text strong,
+    .brand-name strong {
+        font-size: 21px !important;
+        line-height: 1.05 !important;
+    }
 
     .header-container {
         min-height: 0 !important;
@@ -369,8 +412,7 @@ button:focus-visible {
         min-width: 0 !important;
     }
 
-    /* Celular: el óvalo pasa de ~83 × 49 px (con la imagen vieja) a
-       124 × 74 px */
+    /* El óvalo del logo: 123 × 74 px (antes ~83 × 49 px) */
     .brand-logo {
         height: 74px !important;
     }
@@ -387,6 +429,14 @@ button:focus-visible {
        mida lo que mida */
     .main-nav {
         top: 100% !important;
+    }
+}
+
+/* Celular vertical: nombre de la empresa en 17 px */
+@media (max-width: 768px) {
+    .brand-text strong,
+    .brand-name strong {
+        font-size: 17px !important;
     }
 }
 
