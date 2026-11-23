@@ -24,7 +24,13 @@
     const cfg = window.RDOCE_CONFIG || {};
     const html = document.documentElement;
 
-    if (cfg.animaciones !== "taller") return;
+    /* Cada página oculta su bloque principal desde el <head> (clase
+       rd-cargando) hasta que este archivo prepara la animación, para que
+       nunca se vea primero quieto y después animado. Se quita siempre,
+       pase lo que pase. */
+    const listo = () => html.classList.remove("rd-cargando");
+
+    if (cfg.animaciones !== "taller") { listo(); return; }
 
     const sinMovimiento =
         window.matchMedia &&
@@ -258,6 +264,10 @@
        ARRANQUE
        ====================================================== */
     function iniciar() {
+        try { preparar(); } finally { listo(); }
+    }
+
+    function preparar() {
         if (sinMovimiento || !("IntersectionObserver" in window)) return;
 
         const main = document.querySelector("main");

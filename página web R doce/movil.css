@@ -21,7 +21,14 @@
 
 /* Secciones con fondo oscuro (para elegir el color correcto) */
 /* .vacuum-feature, .vacuum-callout, .vacuum-hero, .company-focus,
-   .contact-strip, .site-footer */
+   .site-footer */
+
+
+/* Mientras se preparan las animaciones (máximo 1,5 s), el bloque
+   principal espera oculto para no aparecer de golpe y luego animarse */
+html.rd-cargando main > section:first-of-type {
+    visibility: hidden;
+}
 
 
 /* ==========================================================
@@ -58,12 +65,6 @@
 .section-label.light {
     color: var(--rd-rojo-texto-oscuro) !important;
 }
-/* La franja de contacto es oscura en unas páginas y roja en otras:
-   en las dos, la etiqueta en blanco se lee bien */
-.contact-strip .section-label {
-    color: #ffffff !important;
-}
-
 /* Números de orden (01, 02…) en gris claro: más oscuros para leerse */
 .service-number,
 .service-top span,
@@ -108,8 +109,6 @@
 /* Botones y enlaces de acción (antes 9–10 px) */
 .primary-button,
 .secondary-button,
-.contact-action,
-.footer-action,
 .text-link,
 .star-button,
 .vacuum-button,
@@ -266,8 +265,6 @@ button:focus-visible {
     /* --- Botones de acción: grandes, a lo ancho --- */
     .primary-button,
     .secondary-button,
-    .contact-action,
-    .footer-action,
     .star-button,
     .vacuum-button,
     .center-action a,
@@ -292,19 +289,6 @@ button:focus-visible {
         min-height: 48px !important;
         display: inline-flex !important;
         align-items: center !important;
-    }
-
-    /* Grupos de botones de contacto: uno debajo del otro */
-    .contact-actions,
-    .footer-actions {
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-        gap: 10px !important;
-        width: 100% !important;
-    }
-    .contact-actions > *,
-    .footer-actions > * {
-        width: 100% !important;
     }
 
     /* --- Pie de página --- */
@@ -340,5 +324,84 @@ button:focus-visible {
     .service-thumb,
     .service-media {
         font-size: 13px !important;
+    }
+}
+
+
+/* ==========================================================
+   3. ENCABEZADO EN CELULAR — logo 25 % más grande
+   El encabezado crece con el logo y el nombre queda centrado
+   a la altura media del logo. Todas las páginas quedan iguales.
+   ========================================================== */
+@media (max-width: 768px) {
+
+    .header-container {
+        min-height: 0 !important;
+        padding-block: 8px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+
+    .brand {
+        display: flex !important;
+        align-items: center !important;
+        min-width: 0 !important;
+    }
+
+    /* 145 × 68 px → 181 × 85 px. La imagen trae margen blanco a los
+       costados, por eso el margen negativo crece en la misma medida. */
+    .brand-logo {
+        width: 181px !important;
+        height: 85px !important;
+        margin-right: -45px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .brand-text,
+    .brand-name {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        min-width: 0 !important;
+    }
+
+    /* El menú desplegado se abre justo debajo del encabezado,
+       mida lo que mida */
+    .main-nav {
+        top: 100% !important;
+    }
+}
+
+/* Celulares de 360–380 px: el nombre un poco más chico para que
+   entre al lado del logo grande y del botón de menú */
+@media (max-width: 380px) {
+    .brand-text strong,
+    .brand-name strong {
+        font-size: 18px !important;
+    }
+    .brand small,
+    .brand-name span {
+        font-size: 10px !important;
+        letter-spacing: .06em !important;
+    }
+}
+
+/* Celulares muy angostos (320 px): el logo baja un poco, porque si no
+   tapa el botón de menú */
+@media (max-width: 340px) {
+    .brand-logo {
+        width: 150px !important;
+        height: 70px !important;
+        margin-right: -37px !important;
+    }
+    .brand-text strong,
+    .brand-name strong {
+        font-size: 16px !important;
+    }
+    .brand small,
+    .brand-name span {
+        font-size: 9px !important;
+        letter-spacing: .04em !important;
     }
 }

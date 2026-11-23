@@ -31,3 +31,15 @@ directamente. No armar páginas de comparación ni selectores dentro del sitio.
   animación y botones flotantes. Lo cargan todas las páginas.
 - `animaciones.js`: animaciones de entrada, aparición al bajar y contadores.
   Estilo elegido: **Taller, intensidad media**.
+- `interacciones.js`: animación del menú del celular (☰ / ✕), efecto al tocar
+  botones y enlaces (se ponen rojos con un pequeño "pop" y la página cambia
+  tras ~230 ms) y "pop" de los botones flotantes en la página de Contacto.
+- `movil.css`: legibilidad y accesibilidad (tamaños mínimos, áreas táctiles,
+  contraste) y el encabezado del celular. Se carga en todas las páginas
+  después de su CSS propio y usa `!important` a propósito.
+- El único contacto con botones son los flotantes (Correo / WhatsApp) de
+  `config.js`. La franja "Hablemos de su proyecto" y los botones del pie se
+  quitaron a pedido.
+- Cada página tiene en su `<head>` un script corto que agrega `rd-cargando`
+  (oculta el bloque principal hasta que `animaciones.js` lo prepara, máximo
+  1,5 s). No quitarlo sin quitar también esa regla de `movil.css`.

@@ -46,14 +46,16 @@ window.RDOCE_CONFIG = {
 };
 
 
-/* Carga animaciones.js (está en la misma carpeta que este archivo) */
+/* Carga animaciones.js e interacciones.js (en la misma carpeta que este archivo) */
 (function () {
     const yo = document.currentScript && document.currentScript.src;
     if (!yo) return;
-    const s = document.createElement("script");
-    s.src = yo.replace(/config\.js(\?.*)?$/, "animaciones.js");
-    s.defer = true;
-    document.head.appendChild(s);
+    ["animaciones.js", "interacciones.js"].forEach(nombre => {
+        const s = document.createElement("script");
+        s.src = yo.replace(/config\.js(\?.*)?$/, nombre);
+        s.defer = true;
+        document.head.appendChild(s);
+    });
 })();
 
 
@@ -170,6 +172,21 @@ document.addEventListener("DOMContentLoaded", () => {
         box-shadow: 0 10px 28px rgba(0,0,0,.3);
     }
     @keyframes rd-in { to { opacity: 1; transform: none; } }
+
+    /* Página de Contacto: los botones aparecen con un "pop" para
+       mostrar que ahí están el correo y el WhatsApp */
+    .rd-float.rd-pop-contacto .rd-float-btn {
+        transform: scale(.4);
+        animation: rd-pop-in .6s cubic-bezier(.34,1.56,.64,1) forwards;
+    }
+    .rd-float.rd-pop-contacto .rd-email { animation-delay: .35s; }
+    .rd-float.rd-pop-contacto .rd-wa { animation-delay: .5s; }
+    @keyframes rd-pop-in {
+        0%   { opacity: 0; transform: scale(.4); }
+        60%  { opacity: 1; transform: scale(1.12); }
+        80%  { transform: scale(.97); }
+        100% { opacity: 1; transform: none; }
+    }
     @keyframes rd-pulse {
         0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55); }
         100% { box-shadow: 0 0 0 18px rgba(37,211,102,0); }
@@ -233,6 +250,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const cont = document.createElement("div");
         cont.className = "rd-float";
+        if (/\/Contacto\//i.test(decodeURIComponent(location.pathname))) {
+            cont.classList.add("rd-pop-contacto");
+        }
 
         /* Correo */
         const email = document.createElement("a");

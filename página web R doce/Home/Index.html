@@ -33,6 +33,9 @@
         href="Home.css"
     >
 <link rel="stylesheet" href="../movil.css">
+<link rel="preload" href="../animaciones.js" as="script">
+<link rel="preload" href="../interacciones.js" as="script">
+<script>(function(d){if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)return;d.classList.add("rd-cargando");setTimeout(function(){d.classList.remove("rd-cargando")},1500)})(document.documentElement)</script>
 
     <script type="application/ld+json">
     {
@@ -647,54 +650,6 @@
 
 
 
-<section class="contact-strip">
-
-    <div class="container contact-strip-grid">
-
-        <div>
-
-            <span class="section-label">
-                CONTACTO
-            </span>
-
-            <h2>
-                Hablemos de su proyecto
-            </h2>
-
-            <p>
-                Comuníquese con R Doce para solicitar
-                información sobre nuestros servicios.
-            </p>
-
-        </div>
-
-
-        <div class="contact-actions">
-
-            <a
-                href="mailto:ventas@rdocesa.cr"
-                class="contact-action"
-                data-email
-                data-email-subject="Consulta desde el sitio web de R Doce"
-            >
-                EMAIL
-            </a>
-
-            <button
-                type="button"
-                class="contact-action"
-                data-whatsapp
-            >
-                WHATSAPP
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
 </main>
 
 
@@ -763,27 +718,6 @@
             <p>
                 <a class="footer-contact-link" href="mailto:ventas@rdocesa.cr" data-email data-email-subject="Consulta desde el sitio web de R Doce">ventas@rdocesa.cr</a>
             </p>
-
-            <div class="footer-actions">
-
-                <a
-                    href="mailto:ventas@rdocesa.cr"
-                    class="footer-action"
-                    data-email
-                    data-email-subject="Consulta desde el sitio web de R Doce"
-                >
-                    EMAIL
-                </a>
-
-                <button
-                    type="button"
-                    class="footer-action"
-                    data-whatsapp
-                >
-                    WHATSAPP
-                </button>
-
-            </div>
 
         </div>
 
