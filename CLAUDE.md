@@ -46,10 +46,12 @@ directamente. No armar páginas de comparación ni selectores dentro del sitio.
 - Cada página tiene en su `<head>` un script corto que agrega `rd-cargando`
   (oculta el bloque principal hasta que `animaciones.js` lo prepara, máximo
   1,5 s). No quitarlo sin quitar también esa regla de `movil.css`.
-- `mapa.js`: mapa de Google Maps en Contacto (fase inicial, sin clave de API).
+- `mapa.js`: mapa de Google Maps (sin clave de API). Va en el pie negro de
+  todas las páginas menos Contacto; Contacto lo tiene como bloque grande y es
+  su único "Cómo llegar". Estilos del mapa en `movil.css` (sección 4).
   Coordenadas en `config.js` → `ubicacion`. Si se pega en `mapaInsertado` el
   enlace "Insertar un mapa" de la ficha de Google de R Doce, se usa ese.
-- Los enlaces a CSS y JS llevan `?v=AAAAMMDD` para que los celulares no usen
+- Los enlaces a CSS y JS llevan `?v=AAAAMMDDNN` para que los celulares no usen
   copias viejas. **Al cambiar cualquier CSS o JS, subir ese número en las 13
   páginas** (config.js propaga la misma versión a los scripts que carga).
 - El menú ☰ aparece en 900 px en todas las páginas (lo fija `movil.css`).

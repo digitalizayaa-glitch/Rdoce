@@ -473,3 +473,207 @@ button:focus-visible {
         letter-spacing: .04em !important;
     }
 }
+
+
+/* =========================================================
+   4. MAPA DE UBICACIÓN — lo arma mapa.js
+   En Contacto (bloque grande) y en el pie negro de las demás páginas
+   ========================================================= */
+
+.mapa {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e3e3e3;
+    background: white;
+    min-height: 0;
+}
+
+.mapa-marco {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    max-width: 100%;
+    background: #f6f6f4;
+    overflow: hidden;
+}
+
+.mapa-marco iframe {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.mapa-aviso {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    color: #5b5b5b;
+    font-size: 16px;
+}
+
+.mapa-aviso[hidden] {
+    display: none;
+}
+
+.mapa-aviso a {
+    color: #b9141a;
+    font-weight: 700;
+}
+
+/* Celular: capa que evita que el mapa atrape el dedo al bajar */
+.mapa-activar {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 0 16px;
+    border: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.35));
+    color: white;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mapa-activar[hidden] {
+    display: none;
+}
+
+.mapa-info {
+    display: grid;
+    gap: 10px;
+    padding: 20px 22px 22px;
+}
+
+.mapa-direccion {
+    margin: 0;
+    color: #111111;
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.mapa-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.mapa-btn {
+    flex: 1 1 160px;
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border: 2px solid #d71920;
+    color: #b9141a;
+    font-size: 16px;
+    font-weight: 800;
+    text-decoration: none;
+    text-align: center;
+    transition: background .2s, color .2s;
+}
+
+.mapa-btn:hover {
+    background: #d71920;
+    color: white;
+}
+
+.mapa-btn-principal {
+    background: #d71920;
+    color: white;
+}
+
+.mapa-btn-principal:hover {
+    background: #b9141a;
+    border-color: #b9141a;
+}
+
+@media (max-width: 620px) {
+    .mapa-marco {
+        aspect-ratio: 1 / 1;
+    }
+    .mapa-acciones {
+        flex-direction: column;
+    }
+    .mapa-btn {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+
+
+/* --- Versión del pie de página (fondo negro) --- */
+.footer-mapa {
+    padding-block: 10px 40px;
+}
+
+.mapa-oscuro {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.04);
+}
+
+.mapa-oscuro .mapa-marco {
+    aspect-ratio: auto;
+    min-height: 260px;
+    background: #2a2a2a;
+}
+
+.mapa-oscuro .mapa-aviso {
+    color: #bdbdbd;
+}
+
+.mapa-oscuro .mapa-aviso a {
+    color: #ff7479;
+}
+
+.mapa-oscuro .mapa-info {
+    align-content: center;
+    padding: 26px 28px;
+}
+
+.mapa-oscuro .mapa-info h2 {
+    margin: 0;
+    color: white;
+}
+
+.mapa-oscuro .mapa-direccion {
+    color: #d7d7d7;
+}
+
+.mapa-oscuro .mapa-btn:not(.mapa-btn-principal) {
+    border-color: rgba(255,255,255,.55);
+    color: white;
+}
+
+.mapa-oscuro .mapa-btn:not(.mapa-btn-principal):hover {
+    background: white;
+    color: #111111;
+}
+
+@media (max-width: 900px) {
+    .mapa-oscuro {
+        grid-template-columns: 1fr;
+    }
+    .mapa-oscuro .mapa-marco {
+        aspect-ratio: 4 / 3;
+        min-height: 0;
+    }
+    .mapa-oscuro .mapa-info {
+        padding: 20px 20px 22px;
+    }
+}

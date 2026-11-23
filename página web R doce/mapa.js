@@ -1,8 +1,9 @@
 /* ==========================================================
    MAPA DE UBICACIÓN — R DOCE  (fase inicial)
    ----------------------------------------------------------
-   Se carga desde config.js solo en páginas con [data-mapa]
-   (por ahora, Contacto).
+   Se carga desde config.js en las páginas con [data-mapa]:
+   el bloque grande de Contacto y el mapa del pie negro de las
+   demás páginas (en Contacto el pie no lleva mapa).
 
    - Inserta un mapa de Google Maps centrado en el local.
      No necesita clave de API.
@@ -22,8 +23,8 @@
 
     const cfg = window.RDOCE_CONFIG || {};
     const u = cfg.ubicacion || {};
-    const caja = document.querySelector("[data-mapa]");
-    if (!caja || typeof u.lat !== "number" || typeof u.lng !== "number") return;
+    const cajas = document.querySelectorAll("[data-mapa]");
+    if (!cajas.length || typeof u.lat !== "number" || typeof u.lng !== "number") return;
 
     const coords = u.lat + "," + u.lng;
     const zoom = u.zoom || 16;
@@ -32,71 +33,77 @@
         "https://maps.google.com/maps?q=" + encodeURIComponent(coords) +
         "&z=" + zoom + "&hl=es&output=embed";
 
-    /* Botón "Cómo llegar": Google Maps con el destino puesto */
-    caja.querySelectorAll("[data-mapa-ir]").forEach(a => {
-        a.href = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(coords);
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-    });
-
-    const marco = caja.querySelector(".mapa-marco");
-    const aviso = caja.querySelector(".mapa-aviso");
-    const activar = caja.querySelector(".mapa-activar");
-    if (!marco) return;
+    const urlBuscar = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(coords);
 
     const tactil = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
 
-    function cargar() {
-        if (marco.querySelector("iframe")) return;
+    cajas.forEach(prepararMapa);
 
-        const f = document.createElement("iframe");
-        f.src = urlMapa;
-        f.title = "Mapa con la ubicación de R Doce en San Antonio de Alajuela";
-        f.loading = "lazy";
-        f.referrerPolicy = "no-referrer-when-downgrade";
-        f.setAttribute("allowfullscreen", "");
+    function prepararMapa(caja) {
 
-        f.addEventListener("load", () => {
-            marco.classList.add("mapa-listo");
-            if (aviso) aviso.hidden = true;
-            if (tactil && activar) activar.hidden = false;
+        /* Botón "Cómo llegar": Google Maps con el destino puesto */
+        caja.querySelectorAll("[data-mapa-ir]").forEach(a => {
+            a.href = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(coords);
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
         });
 
-        marco.insertBefore(f, marco.firstChild);
+        const marco = caja.querySelector(".mapa-marco");
+        const aviso = caja.querySelector(".mapa-aviso");
+        const activar = caja.querySelector(".mapa-activar");
+        if (!marco) return;
 
-        /* Si en 8 segundos no cargó (sin internet, bloqueado),
-           se ofrece abrirlo en Google Maps */
-        setTimeout(() => {
-            if (marco.classList.contains("mapa-listo") || !aviso) return;
-            aviso.innerHTML =
-                'No se pudo cargar el mapa. <a href="' +
-                "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(coords) +
-                '" target="_blank" rel="noopener noreferrer">Abrir en Google Maps</a>';
-        }, 8000);
-    }
+        function cargar() {
+            if (marco.querySelector("iframe")) return;
 
-    /* Celular: tocar para mover el mapa; al salir de pantalla se
-       vuelve a bloquear para no atrapar el dedo al bajar */
-    if (activar) {
-        activar.addEventListener("click", () => {
-            marco.classList.add("mapa-activo");
-            activar.hidden = true;
-        });
-    }
+            const f = document.createElement("iframe");
+            f.src = urlMapa;
+            f.title = "Mapa con la ubicación de R Doce en San Antonio de Alajuela";
+            f.loading = "lazy";
+            f.referrerPolicy = "no-referrer-when-downgrade";
+            f.setAttribute("allowfullscreen", "");
 
-    if ("IntersectionObserver" in window) {
-        const obs = new IntersectionObserver(entradas => {
-            entradas.forEach(en => {
-                if (en.isIntersecting) {
-                    cargar();
-                } else if (tactil && marco.classList.contains("mapa-activo")) {
-                    marco.classList.remove("mapa-activo");
-                    if (activar && marco.classList.contains("mapa-listo")) activar.hidden = false;
-                }
+            f.addEventListener("load", () => {
+                marco.classList.add("mapa-listo");
+                if (aviso) aviso.hidden = true;
+                if (tactil && activar) activar.hidden = false;
             });
-        }, { rootMargin: "300px 0px" });
-        obs.observe(marco);
-    } else {
-        cargar();
+
+            marco.insertBefore(f, marco.firstChild);
+
+            /* Si en 8 segundos no cargó (sin internet, bloqueado),
+               se ofrece abrirlo en Google Maps */
+            setTimeout(() => {
+                if (marco.classList.contains("mapa-listo") || !aviso) return;
+                aviso.innerHTML =
+                    'No se pudo cargar el mapa. <a href="' + urlBuscar +
+                    '" target="_blank" rel="noopener noreferrer">Abrir en Google Maps</a>';
+            }, 8000);
+        }
+
+        /* Celular: tocar para mover el mapa; al salir de pantalla se
+           vuelve a bloquear para no atrapar el dedo al bajar */
+        if (activar) {
+            activar.addEventListener("click", () => {
+                marco.classList.add("mapa-activo");
+                activar.hidden = true;
+            });
+        }
+
+        if ("IntersectionObserver" in window) {
+            const obs = new IntersectionObserver(entradas => {
+                entradas.forEach(en => {
+                    if (en.isIntersecting) {
+                        cargar();
+                    } else if (tactil && marco.classList.contains("mapa-activo")) {
+                        marco.classList.remove("mapa-activo");
+                        if (activar && marco.classList.contains("mapa-listo")) activar.hidden = false;
+                    }
+                });
+            }, { rootMargin: "300px 0px" });
+            obs.observe(marco);
+        } else {
+            cargar();
+        }
     }
 })();
