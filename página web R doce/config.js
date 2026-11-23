@@ -12,7 +12,7 @@ window.RDOCE_CONFIG = {
        Solo números, con código de país y sin "+", espacios ni guiones.
        Ejemplo Costa Rica: "50688887777"
        Si queda vacío, el botón muestra un aviso de "falta configurar". */
-    whatsapp: "",
+    whatsapp: "50624341225",
 
     /* CORREO de destino para los botones de "Enviar correo". */
     email: "ventas@rdocesa.cr",
@@ -26,16 +26,13 @@ window.RDOCE_CONFIG = {
         "https://www.google.com/maps/search/?api=1&query=" +
         encodeURIComponent("R Doce, San Antonio, Alajuela, Costa Rica"),
 
-    waze:
-        "https://waze.com/ul?q=" +
-        encodeURIComponent("San Antonio, Alajuela, Costa Rica") +
-        "&navigate=yes",
+    waze: "https://waze.com/ul/hd1u0g5c0u",
 
     /* REDES SOCIALES
        Pegá la URL completa del perfil. Si queda vacío, el enlace
        se muestra desactivado. */
-    linkedin: "",
-    facebook: "",
+    facebook: "https://www.facebook.com/share/1UxL8DPtX8/",
+    tiktok: "https://www.tiktok.com/@rdoce.s.a",
     instagram: "",
 
     /* ANIMACIONES
