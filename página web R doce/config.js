@@ -118,13 +118,11 @@ document.addEventListener("DOMContentLoaded", () => {
         cursor: pointer;
         box-shadow: 0 10px 28px rgba(0,0,0,.25);
         overflow: hidden;
-        opacity: 0;
-        transform: translateY(16px) scale(.9);
-        animation: rd-in .45s cubic-bezier(.2,.8,.2,1) forwards;
         transition: box-shadow .2s, transform .2s;
     }
-    .rd-float-btn.rd-email { background: #d71920; animation-delay: .15s; }
-    .rd-float-btn.rd-wa { background: #25d366; animation-delay: .3s; }
+    /* Siempre visibles, sin animación de aparición */
+    .rd-float-btn.rd-email { background: #d71920; }
+    .rd-float-btn.rd-wa { background: #25d366; }
     .rd-float-btn:hover { box-shadow: 0 14px 34px rgba(0,0,0,.32); transform: translateY(-2px); }
     .rd-float-btn:focus-visible { outline: 3px solid #111; outline-offset: 3px; }
     .rd-float-label {
@@ -171,25 +169,18 @@ document.addEventListener("DOMContentLoaded", () => {
         border-radius: 8px;
         box-shadow: 0 10px 28px rgba(0,0,0,.3);
     }
-    @keyframes rd-in { to { opacity: 1; transform: none; } }
-
-    /* Página de Contacto: los botones aparecen con un "pop" para
-       mostrar que ahí están el correo y el WhatsApp */
+    /* Página de Contacto: los botones, sin desaparecer, hacen un
+       pequeño "pop" para mostrar que ahí están el correo y el WhatsApp */
     .rd-float.rd-pop-contacto .rd-float-btn {
-        transform: scale(.4);
-        animation: rd-pop-in .6s cubic-bezier(.34,1.56,.64,1) forwards;
+        animation: rd-pop-aqui .5s cubic-bezier(.34,1.56,.64,1) both;
     }
-    .rd-float.rd-pop-contacto .rd-email { animation-delay: .35s; }
-    .rd-float.rd-pop-contacto .rd-wa { animation-delay: .5s; }
-    @keyframes rd-pop-in {
-        0%   { opacity: 0; transform: scale(.4); }
-        60%  { opacity: 1; transform: scale(1.12); }
-        80%  { transform: scale(.97); }
-        100% { opacity: 1; transform: none; }
-    }
-    @keyframes rd-pulse {
-        0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55); }
-        100% { box-shadow: 0 0 0 18px rgba(37,211,102,0); }
+    .rd-float.rd-pop-contacto .rd-email { animation-delay: .3s; }
+    .rd-float.rd-pop-contacto .rd-wa { animation-delay: .42s; }
+    @keyframes rd-pop-aqui {
+        0%   { transform: scale(1); }
+        45%  { transform: scale(1.1); }
+        75%  { transform: scale(.98); }
+        100% { transform: scale(1); }
     }
     /* Celular: los botones muestran siempre su nombre, para que
        nadie tenga que adivinar qué hace cada ícono */
@@ -206,6 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     @media (prefers-reduced-motion: reduce) {
         .rd-float-btn { animation: none; opacity: 1; transform: none; }
+        .rd-float.rd-pop-contacto .rd-float-btn { animation: none; }
         .rd-wa::after { animation: none; }
         .rd-float-btn, .rd-float-label { transition: none; }
     }`;

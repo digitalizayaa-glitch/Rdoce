@@ -33,7 +33,10 @@ directamente. No armar páginas de comparación ni selectores dentro del sitio.
   Estilo elegido: **Taller, intensidad media**.
 - `interacciones.js`: animación del menú del celular (☰ / ✕), efecto al tocar
   botones y enlaces (se ponen rojos con un pequeño "pop" y la página cambia
-  tras ~230 ms) y "pop" de los botones flotantes en la página de Contacto.
+  tras ~130 ms) y un pequeño "pop" en el lugar de los botones flotantes al
+  entrar a Contacto (los flotantes no tienen animación de aparición).
+- Imágenes en WebP: `img/r12-logo.webp` (logo recortado al óvalo) e
+  `img/certificacion/iso-9001.webp`.
 - `movil.css`: legibilidad y accesibilidad (tamaños mínimos, áreas táctiles,
   contraste) y el encabezado del celular. Se carga en todas las páginas
   después de su CSS propio y usa `!important` a propósito.

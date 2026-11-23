@@ -27,8 +27,9 @@
         window.matchMedia &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    /* Pausa entre el toque y el cambio de página (milisegundos) */
-    const PAUSA = sinMovimiento ? 120 : 230;
+    /* Pausa entre el toque y el cambio de página (milisegundos).
+       Corta: alcanza para ver el efecto sin hacer esperar */
+    const PAUSA = sinMovimiento ? 80 : 130;
 
     const ROJO = "#d71920";
 
@@ -90,29 +91,34 @@
        2. EFECTO AL TOCAR
        ====================================================== */
 
+    /* Sin el resaltado celeste que pone el navegador del celular:
+       el sitio ya muestra su propio efecto al tocar */
+    a, button { -webkit-tap-highlight-color: transparent; }
+
     /* Al apoyar el dedo: se hunde apenas */
     .rd-abajo {
-        transform: scale(.97) !important;
+        transform: scale(.985) !important;
         transition: transform .08s ease !important;
     }
 
     /* Al soltar: se pone rojo y hace un pequeño pop */
     .rd-tocado {
-        animation: rd-pop .26s cubic-bezier(.2,.8,.2,1) both !important;
+        animation: rd-pop .18s cubic-bezier(.2,.8,.2,1) both !important;
     }
     @keyframes rd-pop {
-        0%   { transform: scale(.97); }
-        55%  { transform: scale(1.045); }
-        100% { transform: scale(1.02); }
+        0%   { transform: scale(.985); }
+        55%  { transform: scale(1.02); }
+        100% { transform: scale(1.01); }
     }
 
-    /* Opciones del menú: fondo rojo y letra blanca */
+    /* Opciones del menú: solo la palabra se pone roja y hace el pop,
+       desde su propio lugar (sin fondo) */
     .main-nav a.rd-tocado {
-        background: ${ROJO} !important;
-        color: #fff !important;
-        border-radius: 6px;
-        padding-inline: 14px !important;
-        margin-inline: -14px;
+        color: ${ROJO} !important;
+        transform-origin: left center;
+    }
+    .main-nav a.rd-abajo {
+        transform-origin: left center;
     }
     /* La opción que estaba marcada vuelve a la normalidad */
     .main-nav a.rd-desmarcado {
@@ -155,9 +161,9 @@
         animation-name: rd-pop-suave !important;
     }
     @keyframes rd-pop-suave {
-        0%   { transform: scale(.985); }
-        55%  { transform: scale(1.015); }
-        100% { transform: scale(1.01); }
+        0%   { transform: scale(.993); }
+        55%  { transform: scale(1.008); }
+        100% { transform: scale(1.004); }
     }
 
     /* Enlaces de texto (pie de página, migas, "Conocer…"): letra roja */

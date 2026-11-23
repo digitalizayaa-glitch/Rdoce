@@ -329,6 +329,26 @@ button:focus-visible {
 
 
 /* ==========================================================
+   LOGO (todas las pantallas)
+   La imagen r12-logo.webp ya viene recortada al óvalo, sin márgenes
+   blancos: se le da solo la altura y el ancho sale solo.
+   ========================================================== */
+.brand-logo {
+    width: auto !important;
+    height: 72px !important;
+    aspect-ratio: 950 / 572;
+    margin-right: 0 !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
+}
+.brand {
+    gap: 12px !important;
+}
+@media (max-width: 1050px) {
+    .brand-logo { height: 64px !important; }
+}
+
+/* ==========================================================
    3. ENCABEZADO EN CELULAR — logo 25 % más grande
    El encabezado crece con el logo y el nombre queda centrado
    a la altura media del logo. Todas las páginas quedan iguales.
@@ -349,13 +369,10 @@ button:focus-visible {
         min-width: 0 !important;
     }
 
-    /* 145 × 68 px → 181 × 85 px. La imagen trae margen blanco a los
-       costados, por eso el margen negativo crece en la misma medida. */
+    /* Celular: el óvalo pasa de ~83 × 49 px (con la imagen vieja) a
+       124 × 74 px */
     .brand-logo {
-        width: 181px !important;
-        height: 85px !important;
-        margin-right: -45px !important;
-        flex-shrink: 0 !important;
+        height: 74px !important;
     }
 
     .brand-text,
@@ -376,6 +393,9 @@ button:focus-visible {
 /* Celulares de 360–380 px: el nombre un poco más chico para que
    entre al lado del logo grande y del botón de menú */
 @media (max-width: 380px) {
+    .brand-logo {
+        height: 68px !important;
+    }
     .brand-text strong,
     .brand-name strong {
         font-size: 18px !important;
@@ -391,9 +411,7 @@ button:focus-visible {
    tapa el botón de menú */
 @media (max-width: 340px) {
     .brand-logo {
-        width: 150px !important;
-        height: 70px !important;
-        margin-right: -37px !important;
+        height: 58px !important;
     }
     .brand-text strong,
     .brand-name strong {
